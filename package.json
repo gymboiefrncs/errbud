@@ -8,7 +8,7 @@
     "dev": "tsx src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "domxzmir",
   "license": "ISC",
   "type": "module",
   "packageManager": "pnpm@10.28.0",
