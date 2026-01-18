@@ -1,7 +1,12 @@
-import { normalizeError } from "./lib/core.js";
+import { normalizeError, formatError } from "./lib/core.js";
 
-try {
-  throw new Error("Error occured");
-} catch (e) {
-  console.log(normalizeError(e));
-}
+const test = () => {
+  try {
+    throw new Error("Error occured");
+  } catch (e) {
+    console.log(normalizeError(e));
+    console.log(formatError(normalizeError(e)));
+  }
+};
+
+test();

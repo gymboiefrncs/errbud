@@ -57,3 +57,22 @@ export const normalizeError = (err: unknown): NormalizedError => {
 
   return { name, message, stack, metadata, timestamp, raw };
 };
+
+export const formatError = (err: NormalizedError) => {
+  const { name, message, stack } = err;
+
+  const stackTrace = stack
+    ?.map((line) => {
+      const isInternal =
+        line.file.includes("node:internal") || line.file === "unknown";
+      const prefix = isInternal ? "[INT]" : "[USER]";
+
+      return `    ${prefix} ${line.fn} (${line.file}:${line.line}:${line.column})`;
+    })
+    .join("\n");
+
+  return `
+${name}: ${message}
+${stackTrace || "    <no stack trace available>"}
+  `;
+};
